@@ -1,12 +1,33 @@
-console.log("I'm connected");
+const timer = document.getElementById("timer");
+var startBtn = document.createElement("BUTTON");
+startBtn.id = "startBtn";
+startBtn.innerHTML = "Start Game";
+document.body.appendChild(startBtn);
 
-var imgTag = document.createElement("img");
+//var imgTag = document.createElement("img");
 
-imgTag.setAttribute("src", "Assets/images/hoopla-is-dead.png");
-imgTag.setAttribute("alt", "Start Test");
+//imgTag.setAttribute("src", "Assets/images/hoopla-is-dead.png");
+//imgTag.setAttribute("alt", "Start Test");
 
-imgTag.addEventListener("click", function(){
-    console.log("Maybe this will start");
+/*imgTag.addEventListener("click", function(){
+    gameTimer();
+});*/
+
+startBtn.addEventListener("click", function(){
+    gameTimer();
+    startBtn.style.display = "none";
 });
 
-document.body.appendChild(imgTag);
+function gameTimer() {
+    var timeLimit = 75;
+  
+    var timeInterval = setInterval(function () {
+      timeLimit--;
+      console.log(timeLimit);
+      
+      timer.innerHTML = `${timeLimit} seconds`;
+      if(timeLimit <= 0){
+        clearInterval(timeInterval);
+      }
+    }, 1000);
+}

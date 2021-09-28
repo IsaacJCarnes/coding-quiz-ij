@@ -1,3 +1,71 @@
 body{
-    background: blue;
+    background: white;
+}
+
+#quizArea{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#titleQuestion{
+    position: absolute;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-size: 60px;
+    margin-bottom: 0.5%;
+    width: 50%;
+    left: 25%;
+    top:5%;
+}
+
+#description{
+    position: absolute;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width:45%;
+    left:27.5%;
+    top:30%;
+}
+
+#startBtn{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 50%;
+    width: 7.5%;
+    left: 46.25%;
+}
+
+#answer{
+    position: absolute;
+    width:15%;
+    top:30%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+#answer li{
+    font-size: 30px;
+    padding: 4%;
+    display: none;
+}
+
+#timerArea{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 4%;
+    right: 4%;
+    font-size: 30px;
+}
+
+#timerArea h5, h6{
+    margin: 0px;
+    display: flex;
+    justify-content: right;
 }
