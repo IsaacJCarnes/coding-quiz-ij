@@ -1,11 +1,12 @@
-const heading = document.getElementById("titleQuestion");
+const heading = document.getElementById("titleQuestion"); //Page heading
 const headingText = heading.textContent;
-
 const description = document.getElementById("description")
-const timer = document.getElementById("timer");
-const answerArea = document.getElementById("answer");
-const isCorrectAnswer = document.createElement("DIV");
-const startBtn = document.createElement("BUTTON");
+const timer = document.getElementById("timer"); //Timer in top right
+const answerArea = document.getElementById("answer"); //Multiple choice answer area
+const startBtn = document.createElement("BUTTON"); //Start button at bottom of page
+const resultsArea = document.getElementById("resultArea"); //Results display area
+const wrongResult = document.getElementById("wrong"); //'wrong' text
+const rightResult = document.getElementById("right"); //'right' text
 
 const q1 = {question:"How do we search for an ID in Javascript?", answers: [".searchElementByID()", ".searchID()", ".getElementByID()", ".getID()"], isCorrect: [false, false, true, false]};
 const q2 = {question:"Javascript is object oriented.", answers: ["True", "False"], isCorrect: [true, false]};
@@ -32,7 +33,7 @@ startBtn.addEventListener("click", function(){
   gameTimer();
 });  
 
-function startMenu(){ //Returs elements to their default state
+function startMenu(){ //Returns elements to their default state
   heading.textContent = headingText;
   startBtn.style.display = "flex";
   description.style.display = "flex";
@@ -69,14 +70,14 @@ answerArea.onclick = function(event){
   var clicked = event.target;
   if(clicked.dataset.isCorrect != null){
     questionsAnswered++;
-    if(clicked.dataset.isCorrect){
+    if(clicked.dataset.isCorrect == "true"){
       score+=20;
       answerArea.innerHTML = "";
-      //Correct yay
+      flashResult(true);
     } else {
       score-=6;
       answerArea.innerHTML = "";
-      //Wrong you suck
+      flashResult(false);
     }
 
     if(questionSet.length == 0){ //Base case if user gets through all previous questions
@@ -85,6 +86,16 @@ answerArea.onclick = function(event){
       addAnswers();
     }
   }
+}
+
+function flashResult(correct){ //Displays result for 2 seconds
+  resultsArea.style.visibility = "visible";
+  if(correct == true){
+    rightResult.style.display = "inherit";
+  } else {
+    wrongResult.style.display = "inherit";
+  }
+  setTimeout(() => { resultsArea.style.visibility = "hidden"; rightResult.style.display = "none"; wrongResult.style.display = "none";}, 500);
 }
 
 function gameTimer() {
@@ -104,5 +115,4 @@ function gameTimer() {
 
 startBtn.id = "startBtn";
 startBtn.innerHTML = "Start Game";
-answerArea.append(isCorrectAnswer);
 document.body.appendChild(startBtn);

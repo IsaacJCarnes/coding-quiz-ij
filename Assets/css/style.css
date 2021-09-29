@@ -60,6 +60,30 @@ body{
 
 }
 
+#answer li:hover{
+    background: whitesmoke;
+}
+
+#resultArea{
+    position: absolute;
+    width:50%;
+    left:25%;
+    top: 87%;
+    border-top: 1px solid grey;
+    visibility: hidden;
+}
+
+#wrong{
+    color:grey;
+    display: none;
+
+}
+
+#right{
+    color:grey;
+    display: none;
+}
+
 #timerArea{
     display: flex;
     flex-direction: column;
