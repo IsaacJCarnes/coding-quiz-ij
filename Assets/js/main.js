@@ -1,20 +1,20 @@
-const scoresButton = document.getElementById("showScoresButton");
-const heading = document.getElementById("titleQuestion"); //Page heading
-const headingText = heading.textContent;
-const description = document.getElementById("description")
-const descriptionText = description.textContent;
+const scoresButton = document.getElementById("showScoresButton"); //View highscore button
+const heading = document.getElementById("titleQuestion"); //Page heading, used in other parts of page
+const headingText = heading.textContent; //Saves default value
+const description = document.getElementById("description") //Description, used in other parts of page
+const descriptionText = description.textContent; //Saves default value
 const timer = document.getElementById("timer"); //Timer in top right
 const answerArea = document.getElementById("answer"); //Multiple choice answer area
 const startBtn = document.createElement("BUTTON"); //Start button at bottom of page
 const resultsArea = document.getElementById("resultArea"); //Results display area
 const wrongResult = document.getElementById("wrong"); //'wrong' text
 const rightResult = document.getElementById("right"); //'right' text
-const highscoreArea = document.getElementById("highscoreArea");
-const submitScoreArea = document.getElementById("submitScoreArea");
-const submissionField = document.getElementById("submissionField");
-const submitButton = document.getElementById("submitButton");
-const clearButton = document.getElementById("clearButton");
-const backButton = document.getElementById("backButton");
+const highscoreArea = document.getElementById("highscoreArea"); //Highscore button area
+const submitScoreArea = document.getElementById("submitScoreArea"); //Submission area
+const submissionField = document.getElementById("submissionField"); //Initials value field
+const submitButton = document.getElementById("submitButton"); //Submit score button
+const clearButton = document.getElementById("clearButton"); //Clear highscores button
+const backButton = document.getElementById("backButton"); //Back to start menu button
 
 //Questions and answers
 const q1 = {question:"How do we search for an ID in Javascript?", answers: [".searchElementByID()", ".searchID()", ".getElementByID()", ".getID()"], isCorrect: [false, false, true, false]};
@@ -50,7 +50,7 @@ startBtn.addEventListener("click", function(){
   gameTimer();
 });  
 
-function showStartMenu(shown){ //Returns elements to their default state
+function showStartMenu(shown){ //If shown is true, returns elements to their default state
   if(shown){
     heading.textContent = headingText;
     description.textContent = descriptionText;
@@ -63,7 +63,7 @@ function showStartMenu(shown){ //Returns elements to their default state
   }
 }
 
-function showResultPage(shown){
+function showResultPage(shown){ //If shown is true, shows page where you can submit score
   if(score < 0){
     score = 0;
   }
@@ -78,13 +78,13 @@ function showResultPage(shown){
 
 }
 
-function showHighScores(shown){
+function showHighScores(shown){ //If shown is true, displays highscore page
   if(shown){
     heading.textContent = "High Scores";
     highscoreArea.style.display = "flex";
     var tempText = "|| ";
     for(i = 0; i < window.localStorage.length; i++){
-      tempText = tempText.concat(window.localStorage.key(i) + " " + window.localStorage.getItem(localStorage.key(i) + " || "));
+      tempText = tempText.concat(window.localStorage.key(i) + " " + window.localStorage.getItem(localStorage.key(i)) + " || ");
     }
     description.textContent = tempText;
   } else {
@@ -92,25 +92,25 @@ function showHighScores(shown){
   }
 }
 
-submitButton.addEventListener('click', event => {
+submitButton.addEventListener('click', event => { //Submits highscore
   window.localStorage.setItem(submissionField.value, score);
   showHighScores(true);
   showResultPage(false);
   submissionField.value = "";
 });
 
-backButton.addEventListener('click', event =>{
+backButton.addEventListener('click', event =>{ //Goes to start menu
   resetGame();
   showHighScores(false);
   showStartMenu(true);
 });
 
-clearButton.addEventListener('click', event=>{
+clearButton.addEventListener('click', event=>{ //Clears high scores
   window.localStorage.clear();
   showHighScores(true);
 });
 
-function resetGame(){
+function resetGame(){ //Resets game so you can play again
   questionSet = originalSet.slice();
   usedQuestions = [];
   score = 0;  
@@ -173,7 +173,7 @@ function flashResult(correct){ //Displays result for 2 seconds
   setTimeout(() => { resultsArea.style.visibility = "hidden"; rightResult.style.display = "none"; wrongResult.style.display = "none";}, 500);
 }
 
-function gameTimer() {
+function gameTimer() { //Only allows game to run for 75 seconds
     var timeLimit = 75;
     timer.innerHTML = `${timeLimit} seconds`;
     var timeInterval = setInterval(function () {
@@ -184,6 +184,7 @@ function gameTimer() {
         clearInterval(timeInterval);
         answerArea.innerHTML = "";
         timer.innerHTML = `0 seconds`;
+        heading.textContent = "All done!"
         setTimeout(() => {showResultPage(true)}, 500);
       }
     }, 1000);
