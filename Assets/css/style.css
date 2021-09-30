@@ -2,6 +2,15 @@ body{
     background: white;
 }
 
+#showScoresButton{
+    font-size: 10px;
+    position: absolute;
+    left: 0%;
+    top: 1%;
+    text-decoration: underline;
+    color: blue;
+}
+
 #quizArea{
     display: flex;
     flex-direction: column;
@@ -71,6 +80,28 @@ body{
     top: 87%;
     border-top: 1px solid grey;
     visibility: hidden;
+}
+
+#highscoreArea{
+    width: 15%;
+    height: 5%;
+    display: none;
+    position: absolute;
+    justify-content: space-evenly;
+    left: 42.5%;
+    top: 65%;
+}
+
+
+#submitScoreArea{
+    width: 35%;
+    height: 3.5%;
+    display: flex;
+    position: absolute;
+    left: 32.5%;
+    top: 50%;
+
+    display: none;
 }
 
 #wrong{
