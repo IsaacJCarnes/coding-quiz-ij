@@ -31,7 +31,10 @@ var questionsAnswered = 0;
 var originalLength = questionSet.length;
 
 scoresButton.addEventListener("click", function(){
-  showHighScores();
+  showHighScores(true);
+  showStartMenu(false);
+  answerArea.innerHTML = "";
+  resetGame();
 });
 
 //When button is clicked the proper elements are shown and others are hidden and the game is started
@@ -79,10 +82,9 @@ function showHighScores(shown){
   if(shown){
     heading.textContent = "High Scores";
     highscoreArea.style.display = "flex";
-    var tempText = "";
+    var tempText = "|| ";
     for(i = 0; i < window.localStorage.length; i++){
-      tempText = tempText.concat(window.localStorage.key(i) + " " + window.localStorage.getItem(localStorage.key(i)));
-      tempText = tempText + '\n';
+      tempText = tempText.concat(window.localStorage.key(i) + " " + window.localStorage.getItem(localStorage.key(i) + " || "));
     }
     description.textContent = tempText;
   } else {
@@ -94,6 +96,7 @@ submitButton.addEventListener('click', event => {
   window.localStorage.setItem(submissionField.value, score);
   showHighScores(true);
   showResultPage(false);
+  submissionField.value = "";
 });
 
 backButton.addEventListener('click', event =>{
@@ -110,9 +113,6 @@ clearButton.addEventListener('click', event=>{
 function resetGame(){
   questionSet = originalSet.slice();
   usedQuestions = [];
-  console.log(questionSet);
-  console.log(usedQuestions);
-  console.log(originalSet);
   score = 0;  
   questionsAnswered = 0;
 }
