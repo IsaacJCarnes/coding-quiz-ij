@@ -6,7 +6,7 @@ To use the website first press the 'Start Game' button. Then use the multiple ch
 
 Here is a link to [github pages](https://isaacjcarnes.github.io/coding-quiz-ij/).
 
-Here is a screenshot of the website
-![Alt text](https://github.com/IsaacJCarnes/coding-quiz-ij/blob/main/Develop/Assets/images/web-screenshot.PNG "Website Screenshot")
+Here is a screenshot of the website 
+![Alt text](https://github.com/IsaacJCarnes/coding-quiz-ij/blob/main/Assets/images/web-screenshot.PNG "Website Screenshot")
 
 Author: Isaac Joshua Carnes
